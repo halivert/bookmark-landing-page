@@ -1,0 +1,20 @@
+{
+	"name": "bookmark-landing-page",
+	"author": "Halí V. <halivelazquez@outlook.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"vue": "^3.0.5"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^1.2.5",
+		"@vue/compiler-sfc": "^3.0.5",
+		"autoprefixer": "^10.3.1",
+		"sass": "^1.35.2",
+		"vite": "^2.4.2"
+	}
+}
