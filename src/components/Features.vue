@@ -8,13 +8,20 @@
 			on the go.
 		</p>
 
-		<ul>
-			<li
-				v-for="tab in tabs"
-				:key="tab.tabText"
-				:class="{ 'is-active': selectedTab.tabText === tab.tabText }"
-			>
-				<button @click="() => (selectedTab = tab)">{{ tab.tabText }}</button>
+		<ul class="features-list">
+			<li v-for="tab in tabs" :key="tab.tabText" class="features-list__element">
+				<button
+					:class="[
+						'features-list__button',
+						{
+							'features-list__button--active':
+								selectedTab.tabText === tab.tabText,
+						},
+					]"
+					@click="() => (selectedTab = tab)"
+				>
+					{{ tab.tabText }}
+				</button>
 			</li>
 		</ul>
 
@@ -86,20 +93,40 @@ export default defineComponent({
 <style lang="scss">
 #features {
 	margin-top: 8em;
+}
 
-	li {
+.features-list {
+	&__element {
 		border-top: 1px solid var(--grayish-blue);
 		text-align: center;
 
 		&:last-child {
 			border-bottom: 1px solid var(--grayish-blue);
 		}
+	}
 
-		> button {
-			appearance: none;
-			border: none;
-			background: none;
-			padding: 1.25em;
+	&__button {
+		appearance: none;
+		border: none;
+		background: none;
+		padding: 1.25em;
+		position: relative;
+		width: 100%;
+		font-size: 0.8em;
+		color: var(--grayish-blue);
+
+		&--active {
+			color: var(--very-dark-blue);
+			&::after {
+				--width: 35%;
+				content: "";
+				position: absolute;
+				width: var(--width);
+				bottom: -1px;
+				left: calc((100% - var(--width)) / 2);
+
+				border-bottom: 4px solid var(--soft-red);
+			}
 		}
 	}
 }
