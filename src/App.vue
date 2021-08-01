@@ -1,42 +1,46 @@
 <template>
-	<div class="layout">
-		<header>
-			<Nav />
-		</header>
-		<main>
-			<div class="blue-pill blue-pill--right"></div>
+	<div
+		:class="['scrollable-layout', { 'scrollable-layout--clipped': activeNav }]"
+	>
+		<div class="layout">
+			<header>
+				<Nav @active="(active) => (activeNav = active)" />
+			</header>
+			<main class="main">
+				<div class="blue-pill blue-pill--right"></div>
 
-			<img
-				class="ilustration"
-				:src="ilustrationHero"
-				alt="A simple bookmark manager"
-			/>
+				<img
+					class="illustration"
+					:src="illustrationHero"
+					alt="A simple bookmark manager"
+				/>
 
-			<h1>A Simple Bookmark Manager</h1>
+				<h1>A Simple Bookmark Manager</h1>
 
-			<p class="paragraph">
-				A clean and simple interface to organize your favourite websites. Open a
-				new browser tab and see your sites load instantly. Try it for free.
-			</p>
+				<p class="paragraph">
+					A clean and simple interface to organize your favourite websites. Open
+					a new browser tab and see your sites load instantly. Try it for free.
+				</p>
 
-			<div class="buttons">
-				<a class="button button--primary" href="#chrome">Get it on Chrome</a>
-				<a class="button button--light" href="#firefox">Get it on Firefox</a>
-			</div>
-		</main>
-		<Features />
-		<section>Download the extension</section>
-		<section>FAQs</section>
-		<section>Newsletter</section>
-		<footer>Footer</footer>
+				<div class="buttons">
+					<a class="button button--primary" href="#chrome">Get it on Chrome</a>
+					<a class="button button--light" href="#firefox">Get it on Firefox</a>
+				</div>
+			</main>
+			<Features />
+			<section>Download the extension</section>
+			<section>FAQs</section>
+			<section>Newsletter</section>
+			<footer>Footer</footer>
+		</div>
 	</div>
 </template>
 <script>
-import ilustrationHero from "./assets/img/illustration-hero.svg";
+import illustrationHero from "./assets/img/illustration-hero.svg";
 
 import "./assets/scss/vars.scss";
 
-import { defineComponent } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import Nav from "./components/Nav.vue";
 import Features from "./components/Features.vue";
 
@@ -46,22 +50,39 @@ export default defineComponent({
 		Features,
 	},
 	setup() {
+		const activeNav = ref(false);
+
 		return {
-			ilustrationHero,
+			illustrationHero,
+			activeNav,
 		};
 	},
 });
 </script>
 
 <style lang="scss">
-body {
+*,
+::before,
+::after {
 	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.scrollable-layout {
+	position: absolute;
+	height: 100vh;
+	scroll-padding: 1em;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+
+	&--clipped {
+		overflow-y: hidden;
+	}
 }
 
 .layout {
-	margin: 0;
 	padding: 0 1em;
-	box-sizing: border-box;
 	min-height: 100vh;
 	display: flex;
 	flex-flow: column;
@@ -69,30 +90,14 @@ body {
 	font-family: var(--font-family);
 	font-size: var(--font-size);
 
-	main {
+	.main {
 		text-align: center;
 		line-height: 1.3;
-
-		.ilustration {
-			width: 100%;
-		}
 
 		.buttons {
 			display: flex;
 			justify-content: center;
 			gap: 0.75em;
-		}
-
-		.button--primary {
-			--button-background-color: var(--soft-blue);
-			--button-text-color: var(--background-color);
-			--box-shadow: 0 3px 6px var(--grayish-blue);
-		}
-
-		.button--light {
-			--button-background-color: var(--background-color);
-			--button-text-color: var(--very-dark-blue);
-			--box-shadow: 0 3px 6px var(--grayish-blue);
 		}
 
 		.button {
@@ -104,6 +109,18 @@ body {
 			padding: 1em 1.5em;
 			border-radius: 8px;
 			box-shadow: var(--box-shadow);
+
+			&--primary {
+				--button-background-color: var(--soft-blue);
+				--button-text-color: var(--background-color);
+				--box-shadow: 0 3px 6px var(--grayish-blue);
+			}
+
+			&--light {
+				--button-background-color: var(--background-color);
+				--button-text-color: var(--very-dark-blue);
+				--box-shadow: 0 3px 6px var(--grayish-blue);
+			}
 		}
 	}
 }
@@ -142,5 +159,31 @@ li {
 button {
 	font-family: var(--font-family);
 	cursor: pointer;
+}
+
+.blue-pill {
+	height: 25%;
+	width: 80%;
+	background-color: var(--soft-blue);
+	position: absolute;
+	transform: translateY(25%);
+
+	&--right {
+		right: 0;
+		border-top-left-radius: 50em;
+		border-bottom-left-radius: 50em;
+	}
+
+	&--left {
+		left: 0;
+		border-top-right-radius: 50em;
+		border-bottom-right-radius: 50em;
+	}
+}
+
+.illustration {
+	width: 100%;
+	position: relative;
+	z-index: 0;
 }
 </style>
