@@ -18,22 +18,26 @@
 			</li>
 		</ul>
 
-		<div class="tabs">
+		<div class="features__tabs">
 			<div class="blue-pill blue-pill--left"></div>
 
-			<img :src="selectedTab.img" :alt="selectedTab.tabText" />
+			<img
+				class="feature__illustration"
+				:src="selectedTab.img"
+				:alt="selectedTab.tabText"
+			/>
 
-			<h3>{{ selectedTab.title }}</h3>
+			<h3 class="feature__title">{{ selectedTab.title }}</h3>
 
-			<p>{{ selectedTab.text }}</p>
+			<p class="feature__description">{{ selectedTab.text }}</p>
 		</div>
 	</section>
 </template>
 
 <script>
-import tab1Ilustration from "../assets/img/illustration-features-tab-1.svg";
-import tab2Ilustration from "../assets/img/illustration-features-tab-2.svg";
-import tab3Ilustration from "../assets/img/illustration-features-tab-3.svg";
+import tab1Illustration from "../assets/img/illustration-features-tab-1.svg";
+import tab2Illustration from "../assets/img/illustration-features-tab-2.svg";
+import tab3Illustration from "../assets/img/illustration-features-tab-3.svg";
 
 import { defineComponent, ref } from "@vue/runtime-core";
 
@@ -49,7 +53,7 @@ export default defineComponent({
 					"Organize your bookmarks however you like. Our simple drag-and-drop\
 					 interface gives you complete control over how you manage your\
 					 favourite sites.",
-				img: tab1Ilustration,
+				img: tab1Illustration,
 			},
 			{
 				tabText: "Speedy Searching",
@@ -57,7 +61,7 @@ export default defineComponent({
 				text:
 					"Our powerful search feature will help you find saved sites in no\
 					 time at all. No need to trawl through all of your bookmarks.",
-				img: tab2Ilustration,
+				img: tab2Illustration,
 			},
 			{
 				tabText: "Easy Sharing",
@@ -65,7 +69,7 @@ export default defineComponent({
 				text:
 					"Easily share your bookmarks and collections with others. Create a\
 					 shareable link that you can send at the click of a button.",
-				img: tab3Ilustration,
+				img: tab3Illustration,
 			},
 		];
 
@@ -98,13 +102,36 @@ export default defineComponent({
 			padding: 1.25em;
 		}
 	}
+}
 
-	.tabs {
-		margin-top: 3em;
+.features__tabs {
+	margin-top: 3em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-		img {
-			width: 80%;
-		}
+.feature {
+	&__illustration {
+		width: 95%;
+		position: relative;
+		z-index: 1;
+		margin-bottom: 4em;
+	}
+
+	&__title {
+		font-size: 1.25em;
+		font-weight: 500;
+		color: var(--very-dark-blue);
+		margin-bottom: 0.75em;
+	}
+
+	&__description {
+		width: 90%;
+		color: var(--grayish-blue);
+		text-align: center;
+		font-size: 0.8em;
+		line-height: 1.5;
 	}
 }
 </style>
