@@ -28,7 +28,8 @@
 				</div>
 			</main>
 			<Features />
-			<section>Download the extension</section>
+			<ExtensionsSection />
+			<FAQs />
 			<section>FAQs</section>
 			<section>Newsletter</section>
 			<footer>Footer</footer>
@@ -40,14 +41,18 @@ import illustrationHero from "./assets/img/illustration-hero.svg";
 
 import "./assets/scss/vars.scss";
 
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref } from "vue";
 import Nav from "./components/Nav.vue";
 import Features from "./components/Features.vue";
+import ExtensionsSection from "./components/ExtensionsSection.vue";
+import FAQs from "./components/FAQs.vue";
 
 export default defineComponent({
 	components: {
 		Nav,
 		Features,
+		ExtensionsSection,
+		FAQs,
 	},
 	setup() {
 		const activeNav = ref(false);
@@ -89,6 +94,7 @@ export default defineComponent({
 	background: var(--background-color);
 	font-family: var(--font-family);
 	font-size: var(--font-size);
+	gap: 8em;
 
 	.main {
 		text-align: center;
@@ -185,5 +191,21 @@ button {
 	width: 100%;
 	position: relative;
 	z-index: 0;
+}
+
+.section {
+	&__title {
+		font-size: 1.25em;
+		color: var(--very-dark-blue);
+		text-align: center;
+		margin-bottom: 0.75em;
+	}
+
+	&__description {
+		color: var(--grayish-blue);
+		font-size: 0.9em;
+		text-align: center;
+		line-height: 1.6;
+	}
 }
 </style>

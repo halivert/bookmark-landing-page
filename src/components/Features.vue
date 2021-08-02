@@ -91,10 +91,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#features {
-	margin-top: 8em;
-}
-
 .features-list {
 	&__element {
 		border-top: 1px solid var(--grayish-blue);
