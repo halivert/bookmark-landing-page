@@ -30,8 +30,7 @@
 			<Features />
 			<ExtensionsSection />
 			<FAQs />
-			<section>FAQs</section>
-			<section>Newsletter</section>
+			<Newsletter />
 			<footer>Footer</footer>
 		</div>
 	</div>
@@ -46,6 +45,7 @@ import Nav from "./components/Nav.vue";
 import Features from "./components/Features.vue";
 import ExtensionsSection from "./components/ExtensionsSection.vue";
 import FAQs from "./components/FAQs.vue";
+import Newsletter from "./components/Newsletter.vue";
 
 export default defineComponent({
 	components: {
@@ -53,6 +53,7 @@ export default defineComponent({
 		Features,
 		ExtensionsSection,
 		FAQs,
+		Newsletter,
 	},
 	setup() {
 		const activeNav = ref(false);
@@ -76,6 +77,7 @@ export default defineComponent({
 
 .scrollable-layout {
 	position: absolute;
+	width: 100%;
 	height: 100vh;
 	scroll-padding: 1em;
 	overflow-y: scroll;
