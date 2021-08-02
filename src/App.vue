@@ -30,7 +30,7 @@
 			<Features />
 			<ExtensionsSection />
 			<FAQs />
-			<Newsletter />
+			<Contact />
 			<footer>Footer</footer>
 		</div>
 	</div>
@@ -45,7 +45,7 @@ import Nav from "./components/Nav.vue";
 import Features from "./components/Features.vue";
 import ExtensionsSection from "./components/ExtensionsSection.vue";
 import FAQs from "./components/FAQs.vue";
-import Newsletter from "./components/Newsletter.vue";
+import Contact from "./components/Contact.vue";
 
 export default defineComponent({
 	components: {
@@ -53,7 +53,7 @@ export default defineComponent({
 		Features,
 		ExtensionsSection,
 		FAQs,
-		Newsletter,
+		Contact,
 	},
 	setup() {
 		const activeNav = ref(false);
@@ -89,7 +89,6 @@ export default defineComponent({
 }
 
 .layout {
-	padding: 0 1em;
 	min-height: 100vh;
 	display: flex;
 	flex-flow: column;
@@ -106,6 +105,7 @@ export default defineComponent({
 			display: flex;
 			justify-content: center;
 			gap: 0.75em;
+			padding: 0 1em;
 		}
 
 		.button {
@@ -130,6 +130,10 @@ export default defineComponent({
 				--box-shadow: 0 3px 6px var(--grayish-blue);
 			}
 		}
+
+		h1 {
+			padding: 0 1em;
+		}
 	}
 }
 
@@ -153,6 +157,7 @@ p.paragraph {
 	color: var(--grayish-blue);
 	line-height: 1.5;
 	text-align: center;
+	padding: 0 1em;
 }
 
 ul {
@@ -193,6 +198,7 @@ button {
 	width: 100%;
 	position: relative;
 	z-index: 0;
+	padding: 0 1em;
 }
 
 .section {

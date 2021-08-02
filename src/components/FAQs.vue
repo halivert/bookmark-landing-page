@@ -1,5 +1,5 @@
 <template>
-	<section class="faqs">
+	<section id="faqs" class="section">
 		<h3 class="section__title">Frequently Asked Questions</h3>
 
 		<p class="section__description">
@@ -77,6 +77,10 @@ export default defineComponent({
 	&__title {
 		padding: 0 1em;
 	}
+}
+
+#faqs {
+	padding: 0 1em;
 }
 
 .faqs {

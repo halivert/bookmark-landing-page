@@ -1,5 +1,5 @@
 <template>
-	<section class="section">
+	<section id="extensions" class="section">
 		<h3 class="section__title">Download the extension</h3>
 
 		<p class="section__description">
@@ -59,6 +59,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+#extensions {
+	padding: 0 1em;
+}
+
 .extensions-list {
 	display: flex;
 	flex-direction: column;

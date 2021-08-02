@@ -88,7 +88,7 @@ export default defineComponent({
 .nav {
 	display: flex;
 	justify-content: space-between;
-	padding: 2em 1.5em;
+	padding: 2em 2.5em;
 
 	&__button {
 		appearance: none;
