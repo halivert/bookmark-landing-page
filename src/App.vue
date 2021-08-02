@@ -30,8 +30,10 @@
 			<Features />
 			<ExtensionsSection />
 			<FAQs />
-			<Contact />
-			<footer>Footer</footer>
+			<div>
+				<Contact />
+				<!-- <Footer :user="{ name: 'halivert', link: 'https://halivert.dev' }" /> -->
+			</div>
 		</div>
 	</div>
 </template>
@@ -98,6 +100,7 @@ export default defineComponent({
 	gap: 8em;
 
 	.main {
+		margin-top: -8em;
 		text-align: center;
 		line-height: 1.3;
 
