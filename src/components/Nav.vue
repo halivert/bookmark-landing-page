@@ -1,7 +1,7 @@
 <template>
 	<nav class="nav">
 		<a class="nav__logo" href="/">
-			<img :src="logoBookmark" alt="Bookmark icon" />
+			<BookmarkIcon />
 		</a>
 
 		<button class="nav__button" v-if="!isActive" @click="isActive = true">
@@ -10,7 +10,11 @@
 
 		<div v-if="isActive" class="nav-content">
 			<div class="nav-content__top">
-				<img :src="logoBookmarkWhite" />
+				<BookmarkIcon
+					textColor="white"
+					circleColor="white"
+					ribbonColor="very-dark-blue"
+				/>
 
 				<button class="nav__button" @click="isActive = false">
 					<i class="icon icon--close" aria-label="Close button"></i>
@@ -47,16 +51,19 @@
 </template>
 
 <script>
-import logoBookmark from "../assets/img/logo-bookmark.svg";
-import logoBookmarkWhite from "../assets/img/logo-bookmark-white.svg";
 import iconFacebook from "../assets/img/icon-facebook.svg";
 import iconTwitter from "../assets/img/icon-twitter.svg";
+
+import BookmarkIcon from "./BookmarkIcon.vue";
 
 import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
 	name: "Nav",
 	inheritAttrs: false,
+	components: {
+		BookmarkIcon,
+	},
 	emits: ["active"],
 	setup(_, ctx) {
 		const isActive = ref(false);
@@ -68,8 +75,6 @@ export default defineComponent({
 		const sections = ["features", "pricing", "contact"];
 
 		const icons = {
-			logoBookmark,
-			logoBookmarkWhite,
 			iconFacebook,
 			iconTwitter,
 		};

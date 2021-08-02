@@ -4,8 +4,12 @@
 
 		<h3 class="contact__title">Stay up-to-date with what we’re doing</h3>
 
-		<form action="#contact-us" class="contact__form">
-			<input class="input" type="text" placeholder="Enter your email address" />
+		<form
+			@submit.prevent="handleSubmit"
+			action="#contact-us"
+			class="contact__form"
+		>
+			<Input type="email" placeholder="Enter your email address" required />
 
 			<button type="submit">Contact Us</button>
 		</form>
@@ -15,10 +19,24 @@
 <script>
 import { defineComponent } from "vue";
 
+import Input from "./Input.vue";
+
 export default defineComponent({
-	name: "Newsletter",
+	name: "Contact",
 	inheritAttrs: false,
-	setup() {},
+	components: {
+		Input,
+	},
+	setup() {
+		const handleSubmit = (evt) => {
+			evt.target.reset();
+			console.info("Submitted");
+		};
+
+		return {
+			handleSubmit,
+		};
+	},
 });
 </script>
 
@@ -50,9 +68,9 @@ export default defineComponent({
 	&__form {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5em;
+		gap: 0.75em;
 
-		[type=submit] {
+		[type="submit"] {
 			border-radius: 4px;
 			appearance: none;
 			border: none;
@@ -61,18 +79,6 @@ export default defineComponent({
 			padding: 1.125em;
 			font-weight: 500;
 		}
-	}
-}
-
-.input {
-	padding: 1em 1.5em;
-	border-radius: 4px;
-	appearance: none;
-	border: none;
-	font-family: var(--font-family);
-
-	&::placeholder {
-		color: var(--grayish-blue);
 	}
 }
 </style>
