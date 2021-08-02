@@ -32,7 +32,7 @@
 			<FAQs />
 			<div>
 				<Contact />
-				<!-- <Footer :user="{ name: 'halivert', link: 'https://halivert.dev' }" /> -->
+				<Footer :user="{ name: 'Halí', link: 'https://halivert.dev' }" />
 			</div>
 		</div>
 	</div>
@@ -48,6 +48,7 @@ import Features from "./components/Features.vue";
 import ExtensionsSection from "./components/ExtensionsSection.vue";
 import FAQs from "./components/FAQs.vue";
 import Contact from "./components/Contact.vue";
+import Footer from "./components/Footer.vue";
 
 export default defineComponent({
 	components: {
@@ -56,6 +57,7 @@ export default defineComponent({
 		ExtensionsSection,
 		FAQs,
 		Contact,
+		Footer,
 	},
 	setup() {
 		const activeNav = ref(false);
