@@ -16,7 +16,7 @@
 				<details class="faqs__list-element-details">
 					<summary class="faqs__list-element-summary">
 						<span>{{ question.question }}</span>
-						<span><i class="icon icon--arrow"></i></span>
+						<span><Icon class="icon--arrow" type="arrow"/></span>
 					</summary>
 					<p class="faqs__list-element-description">
 						{{ question.answer }}
@@ -34,9 +34,14 @@
 <script>
 import { defineComponent } from "@vue/runtime-core";
 
+import Icon from "./Icon.vue";
+
 export default defineComponent({
 	name: "FAQs",
 	inheritAttrs: false,
+	components: {
+		Icon,
+	},
 	setup() {
 		const questions = [
 			{
@@ -107,7 +112,7 @@ export default defineComponent({
 				margin-bottom: 2em;
 
 				.icon--arrow {
-					content: url(../assets/img/icon-arrow-red.svg);
+					color: var(--soft-red);
 					transform: rotate(180deg);
 				}
 			}
@@ -127,7 +132,7 @@ export default defineComponent({
 
 .icon {
 	&--arrow {
-		content: url(../assets/img/icon-arrow-blue.svg);
+		color: var(--soft-blue);
 		transition-property: transform;
 		transition-duration: 0.5s;
 	}
