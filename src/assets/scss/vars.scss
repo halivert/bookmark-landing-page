@@ -10,9 +10,3 @@ html {
 	--font-size: 18px;
 	--font-family: Rubik;
 }
-
-@mixin desktop {
-	@media (min-width: 900px) {
-		@content;
-	}
-}

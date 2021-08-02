@@ -11,14 +11,7 @@
 		</ul>
 
 		<div>
-			<div class="footer__social">
-				<a href="https://facebook.com">
-					<img src="../assets/img/icon-facebook.svg" alt="Facebook logo" />
-				</a>
-				<a href="https://twitter.com">
-					<img src="../assets/img/icon-twitter.svg" alt="Twitter logo" />
-				</a>
-			</div>
+			<SocialLinks />
 
 			<p class="footer__attribution">
 				Challenge by
@@ -38,12 +31,14 @@
 import { defineComponent } from "vue";
 
 import BookmarkIcon from "./BookmarkIcon.vue";
+import SocialLinks from "./SocialLinks.vue";
 
 export default defineComponent({
 	name: "Footer",
 	inheritAttrs: false,
 	components: {
 		BookmarkIcon,
+		SocialLinks,
 	},
 	props: {
 		user: Object,
@@ -82,12 +77,6 @@ export default defineComponent({
 			color: inherit;
 			text-decoration: none;
 		}
-	}
-
-	&__social {
-		display: flex;
-		justify-content: center;
-		gap: 2em;
 	}
 
 	&__attribution {

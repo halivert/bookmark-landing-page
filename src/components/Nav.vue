@@ -1,14 +1,14 @@
 <template>
-	<nav class="nav">
+	<nav :class="['nav', { 'nav--active': isActive }]">
 		<a class="nav__logo" href="/">
 			<BookmarkIcon />
 		</a>
 
-		<button class="nav__button" v-if="!isActive" @click="isActive = true">
+		<button class="nav__button" @click="isActive = true">
 			<i class="icon icon--hamburger" aria-label="Burger menu"></i>
 		</button>
 
-		<div v-if="isActive" class="nav-content">
+		<div class="nav-content">
 			<div class="nav-content__top">
 				<BookmarkIcon
 					textColor="white"
@@ -23,7 +23,11 @@
 
 			<ul>
 				<li v-for="section in sections" :key="section">
-					<a @click="isActive = false" :href="`#${section}`">
+					<a
+						class="nav-content__link"
+						@click="isActive = false"
+						:href="`#${section}`"
+					>
 						{{ section }}
 					</a>
 				</li>
@@ -38,23 +42,14 @@
 				</li>
 			</ul>
 
-			<div class="nav-content__bottom">
-				<a href="https://facebook.com">
-					<img :src="iconFacebook" alt="Facebook logo" />
-				</a>
-				<a href="https://twitter.com">
-					<img :src="iconTwitter" alt="Twitter logo" />
-				</a>
-			</div>
+			<SocialLinks class="nav-content__bottom" />
 		</div>
 	</nav>
 </template>
 
 <script>
-import iconFacebook from "../assets/img/icon-facebook.svg";
-import iconTwitter from "../assets/img/icon-twitter.svg";
-
 import BookmarkIcon from "./BookmarkIcon.vue";
+import SocialLinks from "./SocialLinks.vue";
 
 import { defineComponent, ref, watch } from "vue";
 
@@ -63,6 +58,7 @@ export default defineComponent({
 	inheritAttrs: false,
 	components: {
 		BookmarkIcon,
+		SocialLinks,
 	},
 	emits: ["active"],
 	setup(_, ctx) {
@@ -74,22 +70,17 @@ export default defineComponent({
 
 		const sections = ["features", "pricing", "contact"];
 
-		const icons = {
-			iconFacebook,
-			iconTwitter,
-		};
-
 		return {
 			isActive,
 			sections,
-
-			...icons,
 		};
 	},
 });
 </script>
 
 <style lang="scss">
+@import "../assets/scss/mixins.scss";
+
 .nav {
 	display: flex;
 	justify-content: space-between;
@@ -108,7 +99,7 @@ export default defineComponent({
 		inset: 0;
 		z-index: 1;
 		padding: 2em var(--nav-side-padding);
-		display: flex;
+		display: none;
 		flex-flow: column;
 		justify-content: space-between;
 
@@ -137,15 +128,14 @@ export default defineComponent({
 			li {
 				border-top: 1px solid var(--grayish-blue);
 				padding: 1em 0;
-
-				a {
-					box-sizing: border-box;
-					text-decoration: none;
-					text-transform: uppercase;
-					color: var(--background-color);
-					letter-spacing: 2px;
-				}
 			}
+		}
+
+		&__link {
+			text-decoration: none;
+			text-transform: uppercase;
+			color: var(--text-color, white);
+			letter-spacing: 2px;
 		}
 
 		&__button {
@@ -155,12 +145,26 @@ export default defineComponent({
 			width: 100%;
 			padding: 0.5em;
 			border-radius: 4px;
+			text-decoration: none;
+			text-transform: uppercase;
+			color: var(--text-color, white);
+			letter-spacing: 2px;
 		}
 
 		&__bottom {
 			display: flex;
 			justify-content: center;
 			gap: 2em;
+		}
+	}
+
+	&--active {
+		> .nav__button {
+			display: none;
+		}
+
+		.nav-content {
+			display: flex;
 		}
 	}
 }
@@ -172,6 +176,84 @@ export default defineComponent({
 
 	&--hamburger {
 		content: url(../assets/img/icon-hamburger.svg);
+	}
+}
+
+@include desktop {
+	.nav {
+		align-items: center;
+		padding: 2em 7em;
+
+		> .nav__button {
+			display: none;
+		}
+
+		&-content {
+			display: flex;
+			flex: 1 1 100%;
+			position: relative;
+			flex-direction: row;
+			--text-color: var(--very-dark-blue);
+
+			ul {
+				display: flex;
+				flex-direction: row;
+				margin-top: 0;
+				justify-content: flex-end;
+				gap: 3em;
+				font-size: 0.8em;
+
+				li {
+					display: flex;
+					justify-content: center;
+					flex-direction: column;
+					border-top: none;
+					padding: 0;
+				}
+			}
+
+			&__link {
+				&:hover,
+				&:focus,
+				&:focus-visible {
+					outline: none;
+					color: var(--soft-red);
+				}
+
+				&:focus-visible {
+					text-decoration: underline;
+				}
+			}
+
+			&__button {
+				background-color: var(--soft-red);
+				margin-top: 0;
+				color: white;
+				padding: 0.75em 2.5em;
+				border: 2px solid var(--soft-red);
+				border-radius: 8px;
+
+				&:hover,
+				&:focus,
+				&:focus-visible {
+					background-color: white;
+					text-decoration: none;
+					color: var(--soft-red);
+				}
+			}
+
+			&__top {
+				display: none;
+			}
+
+			&::before {
+				background-color: unset;
+			}
+
+			&__bottom {
+				display: none;
+			}
+		}
 	}
 }
 </style>
