@@ -1,8 +1,8 @@
 <template>
-	<section id="faqs" class="section">
-		<h3 class="section__title">Frequently Asked Questions</h3>
+	<section id="faqs" class="faqs">
+		<h3 class="faqs__title">Frequently Asked Questions</h3>
 
-		<p class="section__description">
+		<p class="paragraph faqs__description">
 			Here are some of our FAQs. If you have any other questions you’d like
 			answered please feel free to email us.
 		</p>
@@ -78,20 +78,32 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.section {
-	&__title {
-		padding: 0 1em;
-	}
-}
+@import "../assets/scss/mixins.scss";
 
 #faqs {
 	padding: 0 1em;
 }
 
 .faqs {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	&__title {
+		padding: 0 1em;
+		text-align: center;
+		color: var(--very-dark-blue);
+		font-size: 1.5em;
+		margin-bottom: 0.5em;
+	}
+
+	&__description {
+		padding: 0;
+	}
+
 	&__list {
 		list-style: none;
-		margin-top: 2.5em;
+		margin-top: 2em;
 
 		&-element {
 			border-bottom: 1px solid var(--grayish-blue);
@@ -152,6 +164,34 @@ export default defineComponent({
 	&--primary {
 		--button-background-color: var(--soft-blue);
 		--button-color: white;
+	}
+}
+
+@include desktop {
+	.faqs {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		&__description {
+			width: 40%;
+			padding-left: 1em;
+			padding-right: 1em;
+		}
+
+		&__list {
+			width: 40%;
+
+			&-element {
+				&:first-child {
+					border-top: 1px solid var(--grayish-blue);
+				}
+
+				&-summary:hover {
+					color: var(--soft-red);
+				}
+			}
+		}
 	}
 }
 </style>
