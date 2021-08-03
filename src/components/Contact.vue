@@ -110,7 +110,7 @@ export default defineComponent({
 		&__form {
 			width: 30%;
 			flex-direction: row;
-			align-items: flex-start;
+			align-items: baseline;
 
 			[type="submit"]:hover,
 			[type="submit"]:focus,
