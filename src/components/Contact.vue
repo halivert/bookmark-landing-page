@@ -9,7 +9,12 @@
 			action="#contact-us"
 			class="contact__form"
 		>
-			<Input type="email" placeholder="Enter your email address" required />
+			<Input
+				class="contact__input"
+				type="email"
+				placeholder="Enter your email address"
+				required
+			/>
 
 			<button type="submit">Contact Us</button>
 		</form>
@@ -41,6 +46,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "../assets/scss/mixins.scss";
+
 #contact {
 	width: 100%;
 	background-color: var(--soft-blue);
@@ -73,11 +80,48 @@ export default defineComponent({
 		[type="submit"] {
 			border-radius: 4px;
 			appearance: none;
-			border: none;
-			background-color: var(--soft-red);
-			color: white;
+			border: 2px solid var(--soft-red);
+			background-color: var(--button-background-color, var(--soft-red));
+			color: var(--button-text-color, white);
 			padding: 1.125em;
 			font-weight: 500;
+		}
+	}
+}
+
+@include desktop {
+	#contact {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.contact {
+		&__strong {
+			font-size: 0.7em;
+			margin-bottom: 2.5em;
+		}
+
+		&__title {
+			font-size: 1.75em;
+			width: 35%;
+		}
+
+		&__form {
+			width: 30%;
+			flex-direction: row;
+			align-items: flex-start;
+
+			[type="submit"]:hover,
+			[type="submit"]:focus,
+			[type="submit"]:focus-visible {
+				--button-background-color: white;
+				--button-text-color: var(--soft-red);
+			}
+		}
+
+		&__input {
+			flex: 1;
 		}
 	}
 }

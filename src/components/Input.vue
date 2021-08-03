@@ -1,5 +1,11 @@
 <template>
-	<div :class="['input__field', { 'input__field--has-error': hasError }]">
+	<div
+		:class="[
+			'input__field',
+			{ 'input__field--has-error': hasError },
+			$attrs['class'],
+		]"
+	>
 		<div class="input__control">
 			<input
 				ref="input"
