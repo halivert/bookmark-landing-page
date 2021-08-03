@@ -4,8 +4,12 @@
 			<BookmarkIcon />
 		</a>
 
-		<button class="nav__button" @click="isActive = true">
-			<i class="icon icon--hamburger" aria-label="Burger menu"></i>
+		<button
+			class="nav__button"
+			@click="isActive = true"
+			aria-label="Burger menu"
+		>
+			<i class="icon icon--hamburger"></i>
 		</button>
 
 		<div class="nav-content">
@@ -16,8 +20,12 @@
 					ribbonColor="very-dark-blue"
 				/>
 
-				<button class="nav__button" @click="isActive = false">
-					<i class="icon icon--close" aria-label="Close button"></i>
+				<button
+					class="nav__button"
+					@click="isActive = false"
+					aria-label="Close button"
+				>
+					<i class="icon icon--close"></i>
 				</button>
 			</div>
 
