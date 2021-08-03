@@ -1,32 +1,38 @@
 <template>
 	<section id="features">
-		<h2>Features</h2>
+		<header class="features__header">
+			<h2 class="features__title">Features</h2>
 
-		<p class="paragraph">
-			Our aim is to make it quick and easy for you to access your favourite
-			websites. Your bookmarks sync between your devices so you can access them
-			on the go.
-		</p>
+			<p class="paragraph features__description">
+				Our aim is to make it quick and easy for you to access your favourite
+				websites. Your bookmarks sync between your devices so you can access
+				them on the go.
+			</p>
 
-		<ul class="features-list">
-			<li v-for="tab in tabs" :key="tab.tabText" class="features-list__element">
-				<button
-					:class="[
-						'features-list__button',
-						{
-							'features-list__button--active':
-								selectedTab.tabText === tab.tabText,
-						},
-					]"
-					@click="() => (selectedTab = tab)"
+			<ul class="features-list">
+				<li
+					v-for="tab in tabs"
+					:key="tab.tabText"
+					class="features-list__element"
 				>
-					{{ tab.tabText }}
-				</button>
-			</li>
-		</ul>
+					<button
+						:class="[
+							'features-list__button',
+							{
+								'features-list__button--active':
+									selectedTab.tabText === tab.tabText,
+							},
+						]"
+						@click="() => (selectedTab = tab)"
+					>
+						{{ tab.tabText }}
+					</button>
+				</li>
+			</ul>
+		</header>
 
 		<div class="features__tabs">
-			<div class="blue-pill blue-pill--left"></div>
+			<div class="blue-pill blue-pill--left" style="height: 24vw;"></div>
 
 			<img
 				class="feature__illustration"
@@ -34,9 +40,15 @@
 				:alt="selectedTab.tabText"
 			/>
 
-			<h3 class="feature__title">{{ selectedTab.title }}</h3>
+			<div class="feature__content">
+				<h3 class="feature__title">{{ selectedTab.title }}</h3>
 
-			<p class="feature__description">{{ selectedTab.text }}</p>
+				<p class="feature__description">{{ selectedTab.text }}</p>
+
+				<div class="feature__buttons">
+					<a href="#more-info" class="button button--primary">More info</a>
+				</div>
+			</div>
 		</div>
 	</section>
 </template>
@@ -91,8 +103,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "../assets/scss/mixins.scss";
+
 #features {
 	padding: 0 1em;
+
+	.features__description {
+		font-size: 0.8em;
+	}
 }
 
 .features-list {
@@ -111,6 +129,7 @@ export default defineComponent({
 		background: none;
 		padding: 1.25em;
 		position: relative;
+		height: 100%;
 		width: 100%;
 		font-size: 0.8em;
 		color: var(--grayish-blue);
@@ -131,11 +150,21 @@ export default defineComponent({
 	}
 }
 
-.features__tabs {
-	margin-top: 3em;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.features {
+	&__header {
+		text-align: center;
+	}
+
+	&__title {
+		margin-bottom: 0.5em;
+	}
+
+	&__tabs {
+		margin-top: 3em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 .feature {
@@ -146,6 +175,10 @@ export default defineComponent({
 		margin-bottom: 4em;
 	}
 
+	&__content {
+		text-align: center;
+	}
+
 	&__title {
 		font-size: 1.25em;
 		font-weight: 500;
@@ -154,11 +187,83 @@ export default defineComponent({
 	}
 
 	&__description {
-		width: 90%;
 		color: var(--grayish-blue);
 		text-align: center;
 		font-size: 0.8em;
 		line-height: 1.5;
+		padding: 0 1.5em;
+	}
+
+	&__buttons {
+		display: none;
+	}
+}
+
+@include desktop {
+	.features {
+		&__header {
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+		}
+
+		&__description {
+			width: 33%;
+		}
+
+		&-list {
+			display: flex;
+			justify-content: center;
+			width: 50%;
+
+			&__element {
+				flex: 1 0 30%;
+				border-top: none;
+				border-bottom: 1px solid var(--grayish-blue);
+			}
+
+			&__button {
+				font-size: 0.9em;
+				&--active::after {
+					--width: 100%;
+				}
+			}
+		}
+
+		&__tabs {
+			flex-direction: row;
+			gap: 5em;
+
+			> * {
+				flex: 1 0 40%;
+			}
+		}
+	}
+
+	.feature {
+		&__illustration {
+			padding: 0 2em 0 5em;
+		}
+
+		&__content {
+			text-align: left;
+		}
+
+		&__title {
+			font-size: 1.75em;
+		}
+
+		&__description {
+			text-align: left;
+			padding: 0;
+			font-size: 1em;
+			width: 67%;
+		}
+
+		&__buttons {
+			display: block;
+			margin-top: 2em;
+		}
 	}
 }
 </style>

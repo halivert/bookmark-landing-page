@@ -165,7 +165,7 @@ h2 {
 	text-align: center;
 }
 
-p.paragraph {
+.paragraph {
 	font-size: 0.9em;
 	margin: 0 4px 1.5em 4px;
 	color: var(--grayish-blue);
@@ -283,6 +283,10 @@ button {
 			--button-border-color: var(--very-dark-blue);
 			--button-background-color: white;
 		}
+	}
+
+	.paragraph {
+		font-size: 1em;
 	}
 }
 </style>
