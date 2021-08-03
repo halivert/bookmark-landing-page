@@ -1,12 +1,12 @@
 <template>
-	<div
+	<main
 		:class="['scrollable-layout', { 'scrollable-layout--clipped': activeNav }]"
 	>
 		<div class="layout">
 			<header>
 				<Nav @active="(active) => (activeNav = active)" />
 			</header>
-			<main class="main">
+			<div class="main">
 				<div class="blue-pill blue-pill--right"></div>
 
 				<img
@@ -33,7 +33,7 @@
 						>
 					</div>
 				</div>
-			</main>
+			</div>
 			<Features />
 			<ExtensionsSection />
 			<FAQs />
@@ -42,7 +42,7 @@
 				<Footer :user="{ name: 'Halí', link: 'https://halivert.dev' }" />
 			</div>
 		</div>
-	</div>
+	</main>
 </template>
 <script>
 import illustrationHero from "./assets/img/illustration-hero.svg";
