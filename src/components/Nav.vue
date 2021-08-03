@@ -1,6 +1,6 @@
 <template>
 	<nav :class="['nav', { 'nav--active': isActive }]">
-		<a class="nav__logo" href="/">
+		<a class="nav__logo" href="/" aria-label="Nav logo">
 			<BookmarkIcon />
 		</a>
 

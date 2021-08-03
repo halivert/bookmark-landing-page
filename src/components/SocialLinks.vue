@@ -5,6 +5,7 @@
 			:key="link.name"
 			:href="link.href"
 			:class="$attrs['a-class']"
+			:aria-label="`${link.name} icon`"
 		>
 			<Icon class="social-links__icon" :type="link.iconType" />
 		</a>
