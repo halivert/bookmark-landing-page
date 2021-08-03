@@ -190,6 +190,10 @@ export default defineComponent({
 				&-summary:hover {
 					color: var(--soft-red);
 				}
+
+				&-description {
+					text-align: left;
+				}
 			}
 		}
 	}
