@@ -74,8 +74,8 @@ export default defineComponent({
 
 	&__button {
 		appearance: none;
-		border: none;
 		background-color: var(--soft-blue);
+		border: 2px solid var(--soft-blue);
 		color: white;
 		padding: 1em 3em;
 		border-radius: 8px;
@@ -83,6 +83,13 @@ export default defineComponent({
 		font-weight: 500;
 		cursor: pointer;
 		text-decoration: none;
+
+		&:hover,
+		&:focus,
+		&:focus-visible {
+			color: var(--soft-blue);
+			background: white;
+		}
 	}
 }
 </style>
