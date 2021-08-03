@@ -193,6 +193,7 @@ export default defineComponent({
 			flex: 1 1 100%;
 			position: relative;
 			flex-direction: row;
+			padding: 0;
 			--text-color: var(--very-dark-blue);
 
 			ul {

@@ -15,16 +15,23 @@
 					alt="A simple bookmark manager"
 				/>
 
-				<h1>A Simple Bookmark Manager</h1>
+				<div class="main__content">
+					<h1>A Simple Bookmark Manager</h1>
 
-				<p class="paragraph">
-					A clean and simple interface to organize your favourite websites. Open
-					a new browser tab and see your sites load instantly. Try it for free.
-				</p>
+					<p class="paragraph">
+						A clean and simple interface to organize your favourite websites.
+						Open a new browser tab and see your sites load instantly. Try it for
+						free.
+					</p>
 
-				<div class="buttons">
-					<a class="button button--primary" href="#chrome">Get it on Chrome</a>
-					<a class="button button--light" href="#firefox">Get it on Firefox</a>
+					<div class="main__buttons">
+						<a class="button button--primary" href="#chrome"
+							>Get it on Chrome</a
+						>
+						<a class="button button--light" href="#firefox"
+							>Get it on Firefox</a
+						>
+					</div>
 				</div>
 			</main>
 			<Features />
@@ -71,6 +78,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "./assets/scss/mixins.scss";
+
 *,
 ::before,
 ::after {
@@ -81,7 +90,7 @@ export default defineComponent({
 
 .scrollable-layout {
 	position: absolute;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	scroll-padding: 1em;
 	overflow-y: scroll;
@@ -100,45 +109,46 @@ export default defineComponent({
 	font-family: var(--font-family);
 	font-size: var(--font-size);
 	gap: 8em;
+}
 
-	.main {
-		margin-top: -8em;
-		text-align: center;
-		line-height: 1.3;
+.main {
+	margin-top: -8em;
+	text-align: center;
+	line-height: 1.3;
 
-		.buttons {
-			display: flex;
-			justify-content: center;
-			gap: 0.75em;
-			padding: 0 1em;
-		}
+	&__buttons {
+		display: flex;
+		justify-content: center;
+		gap: 0.75em;
+		padding: 0 1em;
+	}
 
-		.button {
-			font-size: 0.8em;
-			background: var(--button-background-color);
-			color: var(--button-text-color);
-			text-decoration: none;
-			font-weight: 500;
-			padding: 1em 1.5em;
-			border-radius: 8px;
-			box-shadow: var(--box-shadow);
+	h1 {
+		padding: 0 1em;
+	}
+}
 
-			&--primary {
-				--button-background-color: var(--soft-blue);
-				--button-text-color: var(--background-color);
-				--box-shadow: 0 3px 6px var(--grayish-blue);
-			}
+.button {
+	font-size: 0.8em;
+	background: var(--button-background-color);
+	color: var(--button-text-color);
+	border: 2px solid var(--button-border-color, var(--button-background-color));
+	text-decoration: none;
+	font-weight: 500;
+	padding: 1em 1.5em;
+	border-radius: 8px;
+	box-shadow: var(--box-shadow);
 
-			&--light {
-				--button-background-color: var(--background-color);
-				--button-text-color: var(--very-dark-blue);
-				--box-shadow: 0 3px 6px var(--grayish-blue);
-			}
-		}
+	&--primary {
+		--button-background-color: var(--soft-blue);
+		--button-text-color: var(--background-color);
+		--box-shadow: 0 3px 6px var(--grayish-blue);
+	}
 
-		h1 {
-			padding: 0 1em;
-		}
+	&--light {
+		--button-background-color: var(--grayish-blue-transparent);
+		--button-text-color: var(--very-dark-blue);
+		--box-shadow: 0 3px 6px var(--grayish-blue);
 	}
 }
 
@@ -146,7 +156,6 @@ h1 {
 	font-size: 1.825em;
 	color: var(--very-dark-blue);
 	font-weight: 500;
-	text-align: center;
 }
 
 h2 {
@@ -161,7 +170,6 @@ p.paragraph {
 	margin: 0 4px 1.5em 4px;
 	color: var(--grayish-blue);
 	line-height: 1.5;
-	text-align: center;
 	padding: 0 1em;
 }
 
@@ -180,11 +188,11 @@ button {
 }
 
 .blue-pill {
-	height: 25%;
-	width: 80%;
+	height: 45vw;
+	width: 78vw;
 	background-color: var(--soft-blue);
 	position: absolute;
-	transform: translateY(25%);
+	transform: translateY(14vw);
 
 	&--right {
 		right: 0;
@@ -219,6 +227,62 @@ button {
 		font-size: 0.9em;
 		text-align: center;
 		line-height: 1.6;
+	}
+}
+
+@include desktop {
+	.main {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+
+		&__content {
+			margin-left: 7em;
+			text-align: left;
+			width: 64%;
+		}
+
+		h1 {
+			font-size: 2em;
+			padding-left: 0;
+			margin-bottom: 0.75em;
+		}
+
+		.paragraph {
+			padding-left: 0;
+			margin-left: 0;
+			margin-bottom: 2em;
+		}
+
+		&__buttons {
+			padding-left: 0;
+			justify-content: flex-start;
+		}
+	}
+
+	.blue-pill {
+		height: 29vw;
+		width: 42vw;
+		transform: translateY(3vw);
+	}
+
+	.button {
+		padding: 0.75em 1.25em;
+
+		&--primary:hover,
+		&--primary:focus,
+		&--primary:focus-visible {
+			--button-text-color: var(--soft-blue);
+			--button-background-color: white;
+			--button-border-color: var(--soft-blue);
+		}
+
+		&--light:hover,
+		&--light:focus,
+		&--light:focus-visible {
+			--button-border-color: var(--very-dark-blue);
+			--button-background-color: white;
+		}
 	}
 }
 </style>
